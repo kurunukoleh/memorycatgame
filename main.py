@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import *
+import base
+import random
 
 app = QApplication([])
 window = QWidget()
@@ -31,11 +33,55 @@ answerline.addWidget(answer1)
 answerline.addWidget(answer2)
 answerline.addWidget(answer3)
 answerline.addWidget(answer4)
+answers = [answer1 , answer2 , answer3 , answer4]
 answersgroup.setLayout(answerline)
 mainline.addWidget(answersgroup)
 
+result = QLabel('Результат :')
+answerline.addWidget(result)
+result.hide()
+
 ansbut = QPushButton('відповісти')
+nextque = QPushButton('наступне питання')
 mainline.addWidget(ansbut)
+mainline.addWidget(nextque)
+nextque.hide()
+
+def shovresult():
+    for i in range(4):
+        answers[i].hide()
+    result.show()
+    nextque.show()
+    ansbut.hide()
+    if answers[0].isChecked():
+        result.setText('правильно')
+    else:
+        result.setText('не правильно')
+
+def showqueshon():
+    random.shuffle(answers)
+    quetext.setText(base.qeust[base.currentQuest]['питання:'])
+    answers[0].setText(base.qeust[base.currentQuest]['правильеа відповідь'])
+    answers[1].setText(base.qeust[base.currentQuest]['неправильна1'])
+    answers[2].setText(base.qeust[base.currentQuest]['неправильна2'])
+    answers[3].setText(base.qeust[base.currentQuest]['неправильна3'])
+
+def showqueshon2():
+    random.shuffle(answers)
+    quetext.setText(base.qeust[1]['питання:'])
+    answers[0].setText(base.qeust[1]['правильеа відповідь'])
+    answers[1].setText(base.qeust[1]['неправильна1'])
+    answers[2].setText(base.qeust[1]['неправильна2'])
+    answers[3].setText(base.qeust[1]['неправильна3'])
+    result.hide()
+    nextque.hide()
+    for i in range(4):
+        answers[i].show()
+    ansbut.show()
+
+showqueshon()
+ansbut.clicked.connect(shovresult)
+nextque.clicked.connect(showqueshon2)
 
 window.setLayout(mainline)
 window.show()
