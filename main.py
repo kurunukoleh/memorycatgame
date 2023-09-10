@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 import base
 import random
 from meniu import meniuwind
+import redaction
 
 app = QApplication([])
 window = QWidget()
@@ -13,6 +14,7 @@ menubut = QPushButton('меню')
 restbtn = QPushButton('Відпочити')
 timespn = QSpinBox()
 timlb = QLabel('хвилин')
+redaguvaty = QPushButton('редагувати питаня')
 
 firstline = QHBoxLayout()
 firstline.addWidget(menubut)
@@ -47,6 +49,7 @@ nextque = QPushButton('наступне питання')
 mainline.addWidget(ansbut)
 mainline.addWidget(nextque)
 nextque.hide()
+mainline.addWidget(redaguvaty)
 
 def shovresult():
     for i in range(4):
@@ -81,10 +84,19 @@ def showqueshon2():
         answers[i].show()
     ansbut.show()
 
+def redactioned():
+    window.hide()
+    redaction.redwind()
+    window.show()
+
+    showqueshon()
+
+
 showqueshon()
 ansbut.clicked.connect(shovresult)
 nextque.clicked.connect(showqueshon2)
 menubut.clicked.connect(meniuwind)
+redaguvaty.clicked.connect(redactioned)
 
 window.setLayout(mainline)
 window.show()
