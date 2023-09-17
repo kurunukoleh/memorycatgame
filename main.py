@@ -5,6 +5,63 @@ from meniu import meniuwind
 import redaction
 
 app = QApplication([])
+
+app.setStyleSheet("""
+    QWidget {
+        background-color: #FFFFDD;
+        color : #016A70;
+    }
+    
+    QPushButton {
+        background-color: #D2DE32;
+        color : #016A70;
+        border-radius: 5px ;
+        border-color: #D2DE32;
+        border-style: hidden;
+        border-width: 5px;
+        min-height: 20px;
+        font-size: 15px;
+        font-family: Impact;
+        
+    }
+    
+    QGroupBox {
+        background-color: #A2C579;
+        color : #016A70;
+    }
+    
+    QRadioButton {
+        background-color: #A2C579;
+        color : #016A70;
+    }
+    
+    QSpinBox#a{
+        background-color: #D2DE32;
+        color : #016A70;
+        border-radius: 5px ;
+        border-color: #D2DE32;
+        border-style: none;
+        border-width: 5px;
+        min-height: 20px;
+        font-size: 15px;
+        font-family: Impact;
+    }
+    
+    QLabel#b{
+        background-color: #FFFFDD;
+        color : #016A70;
+        border-radius: 5px ;
+        border-color: #D2DE32;
+        border-style: none;
+        border-width: 5px;
+        min-height: 20px;
+        font-size: 15px;
+        font-family: Impact;
+    }
+    
+""")
+
+
 window = QWidget()
 window.resize(400 , 300)
 
@@ -13,7 +70,9 @@ mainline = QVBoxLayout()
 menubut = QPushButton('меню')
 restbtn = QPushButton('Відпочити')
 timespn = QSpinBox()
+timespn.setObjectName('a')
 timlb = QLabel('хвилин')
+timlb.setObjectName('b')
 redaguvaty = QPushButton('редагувати питаня')
 
 firstline = QHBoxLayout()
